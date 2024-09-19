@@ -8,16 +8,15 @@ import EventIcon from '@mui/icons-material/Event';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Divider, Drawer, useMediaQuery } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import Profile from './Profile';
 
 const menu = [
-    { title: "Orders", icon: <ShoppingBasketIcon /> },
-    { title: "Favorites", icon: <FavoriteIcon /> },
-    { title: "Address", icon: <HomeIcon /> },
-    { title: "Payments", icon: <AccountBalanceWalletIcon /> },
-    { title: "Notification", icon: <NotificationsActiveIcon /> },
-    { title: "Events", icon: <EventIcon /> },
-    { title: "Logout", icon: <LogoutIcon /> },
+    { title: "Orders", icon: <ShoppingBasketIcon/>},
+    { title: "Favorites", icon: <FavoriteIcon/>},
+    { title: "Address", icon: <HomeIcon/>},
+    { title: "Payments", icon: <AccountBalanceWalletIcon/>},
+    { title: "Notification", icon: <NotificationsActiveIcon/>},
+    { title: "Events", icon: <EventIcon/>},
+    { title: "Logout", icon: <LogoutIcon/>}
 ];
 
 export const ProfileNavigation = ({ open, handleClose }) => {
@@ -41,12 +40,12 @@ export const ProfileNavigation = ({ open, handleClose }) => {
 
                 <div className="w-[50vw] lg:w-[20vw] h-[100vh] flex flex-col justify-center text-xl pt-16 gap-8">
                     {menu.map((item, i) => (
-                        <>
+                        <> 
                             <div onClick={() => handleNavigate(item)} className="px-5 flex items-center space-x-5 cursor-pointer">
                                 {item.icon}
                                 <span>{item.title}</span>
                             </div>
-                            {i !== menu.length - 1 && <Divider/>}
+                            {i!== menu.length - 1 && <Divider/>}
                             </>
                     ))}
                 </div>

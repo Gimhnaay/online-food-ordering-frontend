@@ -20,15 +20,13 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline/>
       {/* <Navbar/> */}
-      {/* <Home/> */}
+      {/* <Home/>  */}
       {/* <RestaurantDetails/> */}
       {/* <Cart/> */}
       {/* <Profile/> */}
-      {/* <CustomerRoute/> */}
-      {/* <UserProfile/> */}
-      {/* <Orders/> */}
-      {/* <Favorites/> */}
-      <Events/>
+      <CustomerRoute/>
+      
+     
     </ThemeProvider>
   );
 }
