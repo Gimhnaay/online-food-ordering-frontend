@@ -8,15 +8,27 @@ import { CssBaseline } from '@mui/material';
 import Home from './component/Home/Home';
 import RestaurantDetails from './component/Restaurent/RestaurantDetails';
 import Cart from './component/Cart/Cart';
+import Profile from './component/Profile/Profile';
+import { CustomerRoute } from './Routers/CustomerRoute';
+import UserProfile from './component/Profile/UserProfile';
+import { Orders } from './component/Profile/Order';
+import Favorites from './component/Profile/Favorites';
+import { Events } from './component/Profile/Events';
 
 function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline/>
-      <Navbar/>
+      {/* <Navbar/> */}
       {/* <Home/> */}
       {/* <RestaurantDetails/> */}
-      <Cart/>
+      {/* <Cart/> */}
+      {/* <Profile/> */}
+      {/* <CustomerRoute/> */}
+      {/* <UserProfile/> */}
+      {/* <Orders/> */}
+      {/* <Favorites/> */}
+      <Events/>
     </ThemeProvider>
   );
 }

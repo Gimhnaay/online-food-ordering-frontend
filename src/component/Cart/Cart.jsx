@@ -3,7 +3,7 @@ import React from 'react'
 import { CartItem } from './CartItem'
 import { AddressCard } from './AddressCard'
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
-import { ErrorMessage, Field, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { getValue } from '@testing-library/user-event/dist/utils';
 //import * as Yup from "yup"
 
@@ -42,10 +42,10 @@ const Cart = () => {
     const handleOpenAddressModal = () => setOpen(true);
 
     const [open, setOpen] = React.useState(false);
-    
+
     const handleClose = () => setOpen(false);
-    const handleSubmit = (value) => {
-        console.log("form value ",value)
+    const handleSubmit = (values) => {
+        console.log("form value ", values)
     }
 
     return (
@@ -121,78 +121,81 @@ const Cart = () => {
                         //validationSchema={validationSchema}
                         onSubmit={handleSubmit}>
 
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <Field
-                                    as={TextField}
-                                    name="streetAddress"
-                                    label="Street Address"
-                                    fullWidth
-                                    variant="outlined"
-                                // error={!ErrorMessage("streetAddress")}
-                                // helperText={
-                                //     <ErrorMessage>
-                                //         {(msg)=><span className='text-red-600'>{msg}</span>}
-                                //     </ErrorMessage>
-                                // }
-                                />
+                        <Form>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <Field
+                                        as={TextField}
+                                        name="streetAddress"
+                                        label="Street Address"
+                                        fullWidth
+                                        variant="outlined"
+                                    // error={!ErrorMessage("streetAddress")}
+                                    // helperText={
+                                    //     <ErrorMessage>
+                                    //         {(msg)=><span className='text-red-600'>{msg}</span>}
+                                    //     </ErrorMessage>
+                                    // }
+                                    />
 
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Field
-                                    as={TextField}
-                                    name="state"
-                                    label="state"
-                                    fullWidth
-                                    variant="outlined"
-                                // error={!ErrorMessage("streetAddress")}
-                                // helperText={
-                                //     <ErrorMessage>
-                                //         {(msg)=><span className='text-red-600'>{msg}</span>}
-                                //     </ErrorMessage>
-                                // }
-                                />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Field
+                                        as={TextField}
+                                        name="state"
+                                        label="state"
+                                        fullWidth
+                                        variant="outlined"
+                                    // error={!ErrorMessage("streetAddress")}
+                                    // helperText={
+                                    //     <ErrorMessage>
+                                    //         {(msg)=><span className='text-red-600'>{msg}</span>}
+                                    //     </ErrorMessage>
+                                    // }
+                                    />
 
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Field
-                                    as={TextField}
-                                    name="city"
-                                    label="City"
-                                    fullWidth
-                                    variant="outlined"
-                                // error={!ErrorMessage("streetAddress")}
-                                // helperText={
-                                //     <ErrorMessage>
-                                //         {(msg)=><span className='text-red-600'>{msg}</span>}
-                                //     </ErrorMessage>
-                                // }
-                                />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Field
+                                        as={TextField}
+                                        name="city"
+                                        label="City"
+                                        fullWidth
+                                        variant="outlined"
+                                    // error={!ErrorMessage("streetAddress")}
+                                    // helperText={
+                                    //     <ErrorMessage>
+                                    //         {(msg)=><span className='text-red-600'>{msg}</span>}
+                                    //     </ErrorMessage>
+                                    // }
+                                    />
 
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Field
-                                    as={TextField}
-                                    name="pincode"
-                                    label="pincode"
-                                    fullWidth
-                                    variant="outlined"
-                                // error={!ErrorMessage("streetAddress")}
-                                // helperText={
-                                //     <ErrorMessage>
-                                //         {(msg)=><span className='text-red-600'>{msg}</span>}
-                                //     </ErrorMessage>
-                                // }
-                                />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Field
+                                        as={TextField}
+                                        name="pincode"
+                                        label="pincode"
+                                        fullWidth
+                                        variant="outlined"
+                                    // error={!ErrorMessage("streetAddress")}
+                                    // helperText={
+                                    //     <ErrorMessage>
+                                    //         {(msg)=><span className='text-red-600'>{msg}</span>}
+                                    //     </ErrorMessage>
+                                    // }
+                                    />
 
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Button fullWidth variant='contained' type="submit" color="primary">
-                                    Deliver Here
-                                </Button>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Button fullWidth variant='contained' type="submit" color="primary">
+                                        Deliver Here
+                                    </Button>
 
+                                </Grid>
                             </Grid>
-                        </Grid>
+                        </Form>
+
 
                     </Formik>
                 </Box>
