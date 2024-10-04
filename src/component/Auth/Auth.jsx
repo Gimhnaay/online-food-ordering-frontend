@@ -3,7 +3,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { style } from "../Cart/Cart";
 import { LoginForm } from './LoginForm'
-import { RegisterForm } from './RegisterForm'
+import RegisterForm from "./RegisterForm";
 
 export const Auth = () => {
 

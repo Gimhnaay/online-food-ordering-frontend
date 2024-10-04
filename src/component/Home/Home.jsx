@@ -2,11 +2,14 @@ import React from "react";
 import "./Home.css"
 import MultiItemCarousel from "./MaltiItemCarousel";
 import RestaurantCard from "../Restaurent/RestaurantCard";
+import { useDispatch } from "react-redux";
 
 
 const restaurent=[1,1,1,1,1,1,1,1,1]
 
 const Home = () => {
+
+
     return (
         <div className="pb-10">
             <section className="banner -z-50 relative flex flex-col justify-center items-center">
