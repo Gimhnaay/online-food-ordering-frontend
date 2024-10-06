@@ -4,7 +4,8 @@ import { CartItem } from './CartItem'
 import { AddressCard } from './AddressCard'
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { getValue } from '@testing-library/user-event/dist/utils';
+import { useDispatch, useSelector } from 'react-redux';
+import {createOrder} from "../Sate/Order/Action"
 //import * as Yup from "yup"
 
 export const style = {
@@ -31,20 +32,33 @@ const initialValues = {
 //     state:Yup.string().required("State is required"),
 //     pincode:Yup.required("Pincode is required"),
 //     city:Yup.string().required("City is required")
-//   })
-
-const items = [1, 1]
+//   }) 
 
 const Cart = () => {
-    const createOrderUsingSelectedAddress = () => {
-    };
-
+    const createOrderUsingSelectedAddress = () => {};
     const handleOpenAddressModal = () => setOpen(true);
-
     const [open, setOpen] = React.useState(false);
+    const { cart, auth } = useSelector(store => store);
+    const dispatch=useDispatch();
 
     const handleClose = () => setOpen(false);
     const handleSubmit = (values) => {
+        const data = {
+            jwt: localStorage.getItem("jwt"),
+            order: {
+                restaurantId: cart.cartItems[0].food?.restaurant.id,
+                deliveryAddress: {
+                    fullName: auth.user?.fullName,
+                    streetAddress: values.streetAddress,
+                    city: values.city,
+                    state: values.state,
+                    postalCode: values.pincode,
+                    country: "Sri Lanka"
+                }
+            }
+
+        }
+        dispatch(createOrder(data))
         console.log("form value ", values)
     }
 
@@ -52,7 +66,9 @@ const Cart = () => {
         <>
             <main className='lg:flex jusitfy-between'>
                 <section className='lg:w-[30%] space-y-6 lg:min-h-screen pt-10'>
-                    {items.map((item) => <CartItem />)}
+                    {cart.cartItems.map((item) => (
+                        <CartItem item={item} />
+                    ))}
 
                     <Divider />
                     <div className='billDetails px-5 text-sm'>
@@ -63,21 +79,21 @@ const Cart = () => {
                         <div className='space-y-3'>
                             <div className='flex justify-between text-gray-400'>
                                 <p>Item Total</p>
-                                <p>RS.8908</p>
+                                <p>{cart.cart?.total}</p>
                             </div>
                             <div className='flex justify-between text-gray-400'>
                                 <p>Deliver Fee</p>
-                                <p>RS.86.00</p>
+                                <p>RS.300.00</p>
                             </div>
                             <div className='flex justify-between text-gray-400'>
                                 <p>GST and Restaurant Charges</p>
-                                <p>RS.76.00</p>
+                                <p>RS.100.00</p>
                             </div>
                             <Divider />
                         </div>
                         <div className='flex justify-between text-gray-400'>
                             <p>Total pay</p>
-                            <p>RS.76.00</p>
+                            <p>{cart.cart?.total + 100 + 300}</p>
                         </div>
 
                     </div>

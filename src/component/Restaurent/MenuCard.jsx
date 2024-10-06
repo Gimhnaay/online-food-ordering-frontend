@@ -1,26 +1,52 @@
 import { Accordion, AccordionDetails, AccordionSummary, Button, Checkbox, FormControlLabel, FormGroup, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Category } from "@mui/icons-material";
+import { categorizeIngredients } from "../util/categorizeIngredients";
+import { addItemToCart } from "../Sate/Cart/Action";
+import { useDispatch } from "react-redux";
 
 
 const demo = [
   {
     Category: "Cheese",
-    ingredient: ["Mozzarella", "armesan"]
+    ingredients: ["Mozzarella", "armesan"]
   },
   {
     Category: "Vegetables",
-    ingredient: ["Mushrooms"]
+    ingredients: ["Mushrooms"]
   }
 ]
 
-const MenuCard = () => {
+const MenuCard = ({ item }) => {
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const dispatch = useDispatch();
 
-const handleCheckBoxChange=(value)=>{
-  console.log("value")
-}
+  const handleCheckBoxChange = (itemName) => {
+    console.log("value",itemName);
+    if(selectedIngredients.includes(itemName)){
+      setSelectedIngredients(
+        selectedIngredients.filter((item)=>item!==itemName)
+    );
+    }else{
+      setSelectedIngredients([...selectedIngredients,itemName])
+    }
+  };
+  const handleAddItemToCart = (e) => {
+    e.preventDefault()
+    const reqData = {
+      token: localStorage.getItem("jwt"),
+      cartItem: {
+        foodId: item.id,
+        quantity: 1,
+        ingredients: selectedIngredients
+      },
+    };
+    dispatch(addItemToCart(reqData))
+    console.log("req data ",reqData)
+  };
 
+  
   return (
     <Accordion>
       <AccordionSummary
@@ -31,18 +57,18 @@ const handleCheckBoxChange=(value)=>{
         <div className="lg:flex items-center justify-between">
           <div className="lg:flex items-center lg:gap-5">
             <img className="w-[7rem] h-[7rem] object-cover"
-              src="https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              src={item.images[0]}
               alt="" />
 
             <div className="space-y-1 lg:space-y-5 lg:max-w-2xl">
               <p className="font-semibold text-xl">
-                Pizza
+                {item.name}
               </p>
               <p>
-                Rs.499
+                {item.price}
               </p>
               <p className="text-gray-400">
-                Our pizza is a perfect blend of artisanal crust, fresh toppings, and rich, homemade sauces, baked to crispy perfection in a wood-fired oven.
+                {item.description}
               </p>
             </div>
           </div>
@@ -51,22 +77,25 @@ const handleCheckBoxChange=(value)=>{
 
       </AccordionSummary>
       <AccordionDetails>
-        <form>
+        <form onSubmit={handleAddItemToCart}>
           <div className="flex gap-5 flex-wrap">
             {
-              demo.map((item) =>(
-                <div>
-                  <p>{item.Category}</p>
-                  <FormGroup>
-                    {item.ingredient.map((item) => (<FormControlLabel control={<Checkbox onChange={()=>handleCheckBoxChange(item)}/>} label={item} />))}
-                  </FormGroup>
-                </div>
-              ))}
+              Object.keys(categorizeIngredients(item.ingredients)).map
+                ((category) => (
+                  <div>
+                    <p>{category}</p>
+                    <FormGroup>
+                      {categorizeIngredients(item.ingredients)[category].map((item) => (
+                        <FormControlLabel key={item.id} control={<Checkbox onChange={() => handleCheckBoxChange(item.name)} />
+                        } label={item.name} />))}
+                    </FormGroup>
+                  </div>
+                ))}
           </div>
           <div className="pt-5">
             <Button variant="contained" type="submit" disabled={false}>
-              {true?"Add to Cart":"Out Of Stock"}
-            </Button>
+              {true ? "Add to Cart" : "Out Of Stock"}
+            </Button>  
           </div>
 
         </form>

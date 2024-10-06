@@ -1,7 +1,8 @@
 import axios from "axios"; 
 import { 
     ADD_TO_FAVORITE_FALIURE, ADD_TO_FAVORITE_REQUEST, ADD_TO_FAVORITE_SUCCESS, 
-    GET_USER_FALIURE, GET_USER_REQUEST, GET_USER_SUCCESS, 
+     GET_USER_FALIURE, 
+     GET_USER_REQUEST, GET_USER_SUCCESS, 
     LOGIN_FALIURE, LOGIN_REQUEST, LOGIN_SUCCESS, 
     LOGOUT, REGISTER_FALIURE, REGISTER_REQUEST, REGISTER_SUCCESS 
 } from "./ActionType"
@@ -55,29 +56,56 @@ export const loginUser = (reqData) => async (dispatch) => {
     }
 } 
 
-export const getUser = (jwt) => async (dispatch) => {
-    dispatch({ type: GET_USER_REQUEST })
+// export const getUser = (jwt) => async (dispatch) => {
+//     dispatch({ type: GET_USER_REQUEST })
 
 
-    try {
+//     try {
 
-        const { data } = await api.get(`/api/users/profile`, {
-            headers:{
-                Authorization: `Bearer ${jwt}`
-            }
-        }) 
+//         const { data } = await api.get(`/api/users/profile`, {
+//             headers:{
+//                 Authorization: `Bearer ${jwt}`
+//             }
+//         }) 
 
 
 
         
-        dispatch({ type:GET_USER_SUCCESS, payload: data })
-        console.log("user profile", data)
+//         dispatch({ type:GET_USER_SUCCESS, payload: data })
+//         console.log("user profile", data)
 
+//     } catch (error) {
+//         dispatch({type: GET_USER_FALIURE, payload:error})
+//         console.log("error", error)
+//     }
+
+
+// } 
+
+
+export const getUser = (jwt) => async (dispatch) => {
+    dispatch({ type: GET_USER_REQUEST });
+
+    try {
+        // Log the JWT token to ensure it is valid
+        console.log("JWT Token: ", jwt);
+
+        const { data } = await api.get(`/api/users/profile`, {
+            headers: {
+                Authorization: `Bearer ${jwt}`,
+            },
+        });
+
+        dispatch({ type: GET_USER_SUCCESS, payload: data });
+        console.log("User profile:", data);
     } catch (error) {
-        dispatch({type: GET_USER_FALIURE, payload:error})
-        console.log("error", error)
+        // Improved error logging
+        console.log("Error response:", error.response ? error.response.data : error.message);
+        dispatch({ type: GET_USER_FALIURE, payload: error.response ? error.response.data : error.message });
     }
-} 
+};
+
+
 
 export const addToFavorite = ({jwt,restaurantId}) => async (dispatch) => {
     dispatch({ type: ADD_TO_FAVORITE_REQUEST})

@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Home.css"
 import MultiItemCarousel from "./MaltiItemCarousel";
 import RestaurantCard from "../Restaurent/RestaurantCard";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllRestaurantsAction } from "../Sate/Restaurant/Action";
+import { Navigate, useNavigate } from "react-router-dom";
+import { findCart } from "../Sate/Cart/Action";
 
 
-const restaurent=[1,1,1,1,1,1,1,1,1]
+const restaurants=[1,1,1,1,1,1,1,1,1]
 
 const Home = () => {
+    const dispatch=useDispatch()
+    const jwt=localStorage.getItem("jwt")
+    const {restaurant} = useSelector(store => store)
+    const navigate = useNavigate()
+
+    console.log("restaurant",restaurant)
+
+    useEffect(()=>{
+        dispatch(getAllRestaurantsAction(jwt))
+        
+    },[])
 
 
     return (
@@ -38,7 +52,7 @@ const Home = () => {
                 </h1>
                 <div className="flex  flex-wrap items-center justify-around gap-5">
                     {
-                        restaurent.map((item)=><RestaurantCard/>)
+                        restaurant.restaurants.map((item)=><RestaurantCard item={item}/>)
                     }
                     
                 </div>
