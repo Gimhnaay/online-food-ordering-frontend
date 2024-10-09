@@ -79,21 +79,21 @@ const Cart = () => {
                         <div className='space-y-3'>
                             <div className='flex justify-between text-gray-400'>
                                 <p>Item Total</p>
-                                <p>{cart.cart?.total}</p>
+                                <p>Rs.{parseFloat(cart.cart?.total).toFixed(2)}</p>
                             </div>
                             <div className='flex justify-between text-gray-400'>
                                 <p>Deliver Fee</p>
-                                <p>RS.300.00</p>
+                                <p>Rs.300.00</p>
                             </div>
                             <div className='flex justify-between text-gray-400'>
                                 <p>GST and Restaurant Charges</p>
-                                <p>RS.100.00</p>
+                                <p>Rs.100.00</p>
                             </div>
                             <Divider />
                         </div>
                         <div className='flex justify-between text-gray-400'>
                             <p>Total pay</p>
-                            <p>{cart.cart?.total + 100 + 300}</p>
+                            <p>Rs.{parseFloat(cart.cart?.total + 100.00 + 300.00).toFixed(2)}</p>
                         </div>
 
                     </div>

@@ -17,7 +17,7 @@ export const OrderCard = ({item,order}) =>{
                         {item.food.name} 
                         </p>
                         <p>
-                            {item.totalPrice}
+                            Rs.{item.totalPrice}
                         </p>
                     </div>
 

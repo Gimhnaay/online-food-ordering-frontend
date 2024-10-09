@@ -20,7 +20,7 @@ export default function RegisterForm(){
 
     const handleSubmit = (values) => {
         console.log("form values", values)
-        dispatch(registerUser({ userData: values, navigate}))
+        dispatch(registerUser({userData: values, navigate}))
     }
 
     return (

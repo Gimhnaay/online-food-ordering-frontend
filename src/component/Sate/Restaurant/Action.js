@@ -45,57 +45,52 @@ import{
 
 }from "./ActionTypes";
 
-// export const getAllRestaurantsAction = (token) => {
-//     return async (dispatch) => {
-//         dispatch({type:GET_ALL_RESTAURANTS_REQUEST});
-//         try{
-//             const {data} = await api.get("/api/restaurant",{
-//                 headers: {
-//                     Authorization: `Bearer ${token}`,
-//                 },
-//             });
-//             dispatch({type:GET_ALL_RESTAURANTS_SUCCESS,payload:data});
-//             console.log("all restaurant ",data);
-//         } catch(error){
-//             console.log("catch error",error)
-//             // dispatch({type:GET_ALL_RESTAURANTS_FAILURE,payload:error})
-//             //not sure start/////
-//             dispatch({
-//                 type: GET_ALL_RESTAURANTS_FAILURE,
-//                 payload: error.response ? error.response.data : "Unknown error",
-//             });
-//             ////not sure stop
-//         }
-//     }
-// }
-
 export const getAllRestaurantsAction = (token) => {
     return async (dispatch) => {
-        dispatch({ type: GET_ALL_RESTAURANTS_REQUEST });
-
-        try {
-            // Log token to check if it's correctly passed
-            console.log("JWT Token: ", token);
-
-            const { data } = await api.get("/api/restaurant", {
+        dispatch({type:GET_ALL_RESTAURANTS_REQUEST});
+        try{
+            const {data} = await api.get(`api/restaurant`,{
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-
-            dispatch({ type: GET_ALL_RESTAURANTS_SUCCESS, payload: data });
-            console.log("All restaurants: ", data);
-        } catch (error) {
-            // Improved error logging
-            console.log("Error response: ", error.response ? error.response.data : error.message);
-
-            dispatch({
-                type: GET_ALL_RESTAURANTS_FAILURE,
-                payload: error.response ? error.response.data : "Unknown error",
-            });
+            dispatch({type:GET_ALL_RESTAURANTS_SUCCESS,payload:data});
+            console.log("all restaurant ",data);
+        } catch(error){
+            console.log("catch error",error)
+            dispatch({type:GET_ALL_RESTAURANTS_FAILURE,payload:error})
+            
         }
-    };
-};
+    }
+}
+
+// export const getAllRestaurantsAction = (token) => {
+//     return async (dispatch) => {
+//         dispatch({ type: GET_ALL_RESTAURANTS_REQUEST });
+
+//         try {
+//             // Log token to check if it's correctly passed
+//             console.log("JWT Token: ", token);
+
+//             const { data } = await api.get("/api/restaurant", {
+//                 headers: {
+//                     Authorization: `Bearer ${token}`,
+//                 },
+//             });
+
+//             dispatch({ type: GET_ALL_RESTAURANTS_SUCCESS, payload: data });
+//             console.log("All restaurants: ", data);
+//         } catch (error) {
+//             // Improved error logging
+//             console.log("Error response: ", error.response ? error.response.data : error.message);
+
+//             dispatch({
+//                 type: GET_ALL_RESTAURANTS_FAILURE,
+//                 payload: error.response ? error.response.data : "Unknown error",
+//             });
+//         }
+//     };
+// };
 
 
 
@@ -326,11 +321,12 @@ export const getRestaurantsCategory = ({jwt,restaurantId})=>{
     return async (dispatch) => {
         dispatch({type:GET_RESTAURANT_CATEGORY_REQUEST});
         try{
-            const res = await api.get(`/api/category/restaurant/${restaurantId}`,{
-                headers:{
+            const res = await api.get(`/api/category/restaurant/${restaurantId}`, {
+                headers: {
                     Authorization: `Bearer ${jwt}`,
                 },
             });
+            
             console.log("get restaurant category ",res.data);
             dispatch({type:GET_RESTAURANT_CATEGORY_SUCCESS, payload: res.data});
 

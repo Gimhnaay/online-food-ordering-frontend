@@ -1,17 +1,17 @@
 import { act } from "react";
 import { isPresentInFavorites } from "../../Config/logic";
 import {
-    ADD_TO_FAVORITE_FALIURE,
+    ADD_TO_FAVORITE_FAILURE,
     ADD_TO_FAVORITE_REQUEST,
     ADD_TO_FAVORITE_SUCCESS,
-    GET_USER_FALIURE,
+    GET_USER_FAILURE,
     GET_USER_REQUEST,
     GET_USER_SUCCESS,
-    LOGIN_FALIURE,
+    LOGIN_FAILURE,
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
     LOGOUT,
-    REGISTER_FALIURE,
+    REGISTER_FAILURE,
     REGISTER_REQUEST,
     REGISTER_SUCCESS,
 } from "./ActionType";
@@ -36,6 +36,7 @@ export const authReducer = (state = initialState, action) => {
             return { ...state, isLoading: true, error: null, success: null };
 
         case REGISTER_SUCCESS:
+        
         case LOGIN_SUCCESS:
             return {
                 ...state,
@@ -44,6 +45,8 @@ export const authReducer = (state = initialState, action) => {
                 success: "Register Success",
             };
 
+        
+
         case GET_USER_SUCCESS:
             return {
                 ...state,
@@ -51,6 +54,8 @@ export const authReducer = (state = initialState, action) => {
                 user: action.payload,
                 favorites:action.payload.favorites
             };
+
+            
 
         case ADD_TO_FAVORITE_SUCCESS:
             return {
@@ -65,10 +70,10 @@ export const authReducer = (state = initialState, action) => {
         case LOGOUT:
             return initialState;
             
-        case REGISTER_FALIURE:
-        case LOGIN_FALIURE:
-        case GET_USER_FALIURE:
-        case ADD_TO_FAVORITE_FALIURE:
+        case REGISTER_FAILURE:
+        case LOGIN_FAILURE:
+        case GET_USER_FAILURE:
+        case ADD_TO_FAVORITE_FAILURE:
             return {
                 ...state,
                 isLoading: false,

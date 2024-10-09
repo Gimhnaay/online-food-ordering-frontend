@@ -85,15 +85,19 @@ const MenuCard = ({ item }) => {
                   <div>
                     <p>{category}</p>
                     <FormGroup>
-                      {categorizeIngredients(item.ingredients)[category].map((item) => (
-                        <FormControlLabel key={item.id} control={<Checkbox onChange={() => handleCheckBoxChange(item.name)} />
+                      {categorizeIngredients(item.ingredients)[category].map(
+                        (item) => (
+                        <FormControlLabel 
+                        key={item.id} 
+                        control={<Checkbox 
+                          onChange={() => handleCheckBoxChange(item.name)} />
                         } label={item.name} />))}
                     </FormGroup>
                   </div>
                 ))}
           </div>
           <div className="pt-5">
-            <Button variant="contained" type="submit" disabled={false}>
+            <Button variant="contained" disabled={false} type="submit">
               {true ? "Add to Cart" : "Out Of Stock"}
             </Button>  
           </div>

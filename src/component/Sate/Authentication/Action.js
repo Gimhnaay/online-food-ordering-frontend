@@ -1,38 +1,61 @@
 import axios from "axios"; 
 import { 
-    ADD_TO_FAVORITE_FALIURE, ADD_TO_FAVORITE_REQUEST, ADD_TO_FAVORITE_SUCCESS, 
-     GET_USER_FALIURE, 
+    ADD_TO_FAVORITE_FAILURE, ADD_TO_FAVORITE_REQUEST, ADD_TO_FAVORITE_SUCCESS, 
+     GET_USER_FAILURE, 
      GET_USER_REQUEST, GET_USER_SUCCESS, 
-    LOGIN_FALIURE, LOGIN_REQUEST, LOGIN_SUCCESS, 
-    LOGOUT, REGISTER_FALIURE, REGISTER_REQUEST, REGISTER_SUCCESS 
+    LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, 
+    LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS 
 } from "./ActionType"
 import { api, API_URL } from "../../Config/api";
 
-export const registerUser = (reqData) => async (dispatch) => {
-    dispatch({ type: REGISTER_REQUEST })
+// export const registerUser = (reqData) => async (dispatch) => {
+//     dispatch({ type: REGISTER_REQUEST })
     
-    try {
+//     try {
 
-        
-       
+//         const {data} = await axios.post(`${API_URL}/auth/signup`, reqData.userData);
+
+//         if (data.jwt) {localStorage.setItem("jwt", data.jwt);}
+//         if (data.role === "ROLE_RESTAURANT_OWNER") {
+//             reqData.navigate("/admin/restaurant")
+//         }
+//         else {
+//             reqData.navigate("/")
+//         }
+
+//         dispatch({ type: REGISTER_SUCCESS, payload: data.jwt })
+//         console.log("register success", data)
+
+//     } catch (error) {
+//         dispatch({type: REGISTER_FAILURE, payload:error})
+//         console.log("error", error)
+//     }
+// } 
+
+export const registerUser = (reqData) => async (dispatch) => {
+    dispatch({ type: REGISTER_REQUEST });
+
+    try {
         const { data } = await axios.post(`${API_URL}/auth/signup`, reqData.userData);
 
-        if (data.jwt) {localStorage.setItem("jwt", data.jwt);}
+        if (data.jwt) {
+            localStorage.setItem("jwt", data.jwt);
+        }
+
         if (data.role === "ROLE_RESTAURANT_OWNER") {
-            reqData.navigate("/admin/restaurant")
-        }
-        else {
-            reqData.navigate("/")
+            reqData.navigate("/admin/restaurant");
+        } else {
+            reqData.navigate("/");
         }
 
-        dispatch({ type: REGISTER_SUCCESS, payload: data.jwt })
-        console.log("register success", data)
-
+        dispatch({ type: REGISTER_SUCCESS, payload: data.jwt });
+        console.log("Register success", data);
     } catch (error) {
-        dispatch({type: REGISTER_FALIURE, payload:error})
-        console.log("error", error)
+        dispatch({ type: REGISTER_FAILURE, payload: error.response?.data?.message || "Registration failed" });
+        console.log("Error during registration:", error);
     }
-} 
+};
+
 
 export const loginUser = (reqData) => async (dispatch) => {
     dispatch({ type: LOGIN_REQUEST })
@@ -51,59 +74,34 @@ export const loginUser = (reqData) => async (dispatch) => {
         console.log("login success", data)
 
     } catch (error) {
-        dispatch({type: LOGIN_FALIURE, payload:error})
+        dispatch({type: LOGIN_FAILURE, payload:error})
         console.log("error", error)
     }
 } 
 
-// export const getUser = (jwt) => async (dispatch) => {
-//     dispatch({ type: GET_USER_REQUEST })
-
-
-//     try {
-
-//         const { data } = await api.get(`/api/users/profile`, {
-//             headers:{
-//                 Authorization: `Bearer ${jwt}`
-//             }
-//         }) 
-
-
-
-        
-//         dispatch({ type:GET_USER_SUCCESS, payload: data })
-//         console.log("user profile", data)
-
-//     } catch (error) {
-//         dispatch({type: GET_USER_FALIURE, payload:error})
-//         console.log("error", error)
-//     }
-
-
-// } 
 
 
 export const getUser = (jwt) => async (dispatch) => {
-    dispatch({ type: GET_USER_REQUEST });
-
+    dispatch({ type: GET_USER_REQUEST })
     try {
-        // Log the JWT token to ensure it is valid
-        console.log("JWT Token: ", jwt);
 
-        const { data } = await api.get(`/api/users/profile`, {
-            headers: {
-                Authorization: `Bearer ${jwt}`,
-            },
-        });
+        const {data} = await api.get(`/api/users/profile`, {
+            headers:{
+                Authorization: `Bearer ${jwt}`
+            }
+        }) 
+        dispatch({ type:GET_USER_SUCCESS, payload: data })
+        console.log("user profile", data)
 
-        dispatch({ type: GET_USER_SUCCESS, payload: data });
-        console.log("User profile:", data);
     } catch (error) {
-        // Improved error logging
-        console.log("Error response:", error.response ? error.response.data : error.message);
-        dispatch({ type: GET_USER_FALIURE, payload: error.response ? error.response.data : error.message });
+        dispatch({type: GET_USER_FAILURE, payload:error})
+        console.log("error", error)
     }
-};
+
+
+} 
+
+
 
 
 
@@ -123,7 +121,7 @@ export const addToFavorite = ({jwt,restaurantId}) => async (dispatch) => {
         console.log("added to favorite", data)
 
     } catch (error) {
-        dispatch({type: ADD_TO_FAVORITE_FALIURE, payload:error})
+        dispatch({type: ADD_TO_FAVORITE_FAILURE, payload:error})
         console.log("error", error)
     }
 }

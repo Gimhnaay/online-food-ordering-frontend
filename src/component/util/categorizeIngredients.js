@@ -6,5 +6,5 @@ export const categorizeIngredients=(ingredients)=>{
         }
         acc[category.name].push(ingredient);
         return acc;
-    },{})
+    },{});
 };

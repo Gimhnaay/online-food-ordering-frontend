@@ -16,7 +16,7 @@ export const CartItem = ({item}) => {
         if(value===-1 && item.quantity===1){
             handleRemoveCartItem()
         }
-        const data={cartIemId:item.id,quantity:item.quantity+value}
+        const data={cartItemId:item.id,quantity:item.quantity+value}
         dispatch(updateCartItem({data,jwt}))
 
     }
@@ -51,7 +51,7 @@ export const CartItem = ({item}) => {
 
                         </div>
                     </div>
-                    <p>{item.totalPrice}</p>
+                    <p>Rs.{parseFloat(item.totalPrice).toFixed(2)}</p>
                 </div>
             </div>
             <div className="pt-3 space-x-2">

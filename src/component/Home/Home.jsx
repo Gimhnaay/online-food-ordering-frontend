@@ -20,8 +20,8 @@ const Home = () => {
 
     useEffect(()=>{
         dispatch(getAllRestaurantsAction(jwt))
-        
     },[])
+ 
 
 
     return (

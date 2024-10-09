@@ -33,7 +33,7 @@ export const ProfileNavigation = ({ open, handleClose }) => {
         }
         else
         navigate(`/my-profile/${item.title.toLowerCase()}`);
-    }
+    };
     
 
     return (
