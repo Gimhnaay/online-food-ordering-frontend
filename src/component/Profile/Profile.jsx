@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Address } from './Address';
 import { Orders } from './Order';
 import Favorites from './Favorites';
-import { Events } from './Events';
+// import { Events } from './Events';
 
 const Profile = () => {
     const [openSideBar, setOpenSideBar]=useState(false);

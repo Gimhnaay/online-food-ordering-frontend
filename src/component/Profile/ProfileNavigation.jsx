@@ -15,9 +15,7 @@ const menu = [
     { title: "Orders", icon: <ShoppingBasketIcon/>},
     { title: "Favorites", icon: <FavoriteIcon/>},
     { title: "Address", icon: <HomeIcon/>},
-    // { title: "Payments", icon: <AccountBalanceWalletIcon/>},
-    // { title: "Notification", icon: <NotificationsActiveIcon/>},
-    // { title: "Events", icon: <EventIcon/>},
+    
     { title: "Logout", icon: <LogoutIcon/>}
 ];
 

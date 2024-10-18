@@ -13,7 +13,7 @@ import { CustomerRoute } from './Routers/CustomerRoute';
 import UserProfile from './component/Profile/UserProfile';
 import { Orders } from './component/Profile/Order';
 import Favorites from './component/Profile/Favorites';
-import { Events } from './component/Profile/Events';
+// import { Events } from './component/Profile/Events';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from './component/Sate/Authentication/Action';
