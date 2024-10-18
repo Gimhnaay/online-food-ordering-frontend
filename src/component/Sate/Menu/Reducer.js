@@ -1,5 +1,4 @@
 //Reducers.js
-import { Search } from '@mui/icons-material';
 import * as actionTypes from './ActionType';
 
 
@@ -49,16 +48,26 @@ const menuItemReducer = (state = initialState, action) => {
                     (menuItem) => menuItem.id !== action.payload
                 ),
             };
+        // case actionTypes.UPDATE_MENU_ITEMS_AVAILABILITY_SUCCESS:
+        //     console.log("updated items id ", action.payload.id)
+        //     return {
+        //         ...state,
+        //         loading: false,
+        //         menuItems: state.menuItem.map(
+        //             (menuItem) => menuItem.id === action.payload.id ? action.
+        //                 payload : menuItem
+        //         ),
+        //     };
+
         case actionTypes.UPDATE_MENU_ITEMS_AVAILABILITY_SUCCESS:
-            console.log("updated items id ", action.payload.id)
             return {
                 ...state,
                 loading: false,
-                menuItems: state.menuItem.map(
-                    (menuItem) => menuItem.id === action.payload.id ? action.
-                        payload : menuItem
+                menuItems: state.menuItems.map(
+                    (menuItem) => menuItem.id === action.payload.id ? action.payload : menuItem
                 ),
             };
+
         case actionTypes.SEARCH_MENU_ITEM_SUCCESS:
             return {
                 ...state,

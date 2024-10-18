@@ -15,9 +15,9 @@ const menu = [
     { title: "Orders", icon: <ShoppingBasketIcon/>},
     { title: "Favorites", icon: <FavoriteIcon/>},
     { title: "Address", icon: <HomeIcon/>},
-    { title: "Payments", icon: <AccountBalanceWalletIcon/>},
-    { title: "Notification", icon: <NotificationsActiveIcon/>},
-    { title: "Events", icon: <EventIcon/>},
+    // { title: "Payments", icon: <AccountBalanceWalletIcon/>},
+    // { title: "Notification", icon: <NotificationsActiveIcon/>},
+    // { title: "Events", icon: <EventIcon/>},
     { title: "Logout", icon: <LogoutIcon/>}
 ];
 
@@ -46,7 +46,7 @@ export const ProfileNavigation = ({ open, handleClose }) => {
                 sx={{ zIndex: -1, position: "sticky" }}
                 >
 
-                <div className="w-[50vw] lg:w-[20vw] h-[100vh] flex flex-col justify-center text-xl pt-16 gap-8">
+                <div className="w-[50vw] lg:w-[20vw] h-[100vh] flex flex-col justify-center text-xl pt-16 space-y-[4rem]">
                     {menu.map((item, i) => (
                         <> 
                             <div onClick={() => handleNavigate(item)} className="px-5 flex items-center space-x-5 cursor-pointer">

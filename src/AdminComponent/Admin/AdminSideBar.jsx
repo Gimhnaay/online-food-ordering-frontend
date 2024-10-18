@@ -13,12 +13,12 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../component/Sate/Authentication/Action";
 
 const menu=[
-    {title:"Dashboard", icon:<Dashboard/>,path:"/"},
+    // {title:"Dashboard", icon:<Dashboard/>,path:"/"},
     {title:"Orders", icon:<ShoppingBag/>,path:"/orders"},
     {title:"Menu", icon:<ShopTwoIcon/>,path:"/menu"},
     {title:"Food Category", icon:<CategoryIcon/>,path:"/category"},
     {title:"Ingredients", icon:<FastfoodIcon/>,path:"/ingredients"},
-    {title:"Events", icon:<EventIcon/>,path:"/event"},
+    // {title:"Events", icon:<EventIcon/>,path:"/event"},
     {title:"Details", icon:<AdminPanelSettingsIcon/>,path:"/details"},
     {title:"Logout", icon:<LogoutIcon/>,path:"/"}
 ]  
@@ -47,7 +47,7 @@ export const AdminSideBar = ({handleClose}) =>{
             anchor='left' 
             sx={{zIndex:1}}>
                 <div className="w-[70vw] lg:w-[20vw] h-screen flex flex-col
-                justify-center text-xl space-y-[1.65rem]">
+                justify-center text-xl space-y-[2.50rem]">
 
                     {menu.map((item,i)=><>
                     <div onClick={()=>handleNavigate(item)} className="px-5 flex items-center gap-5 cursor-pointer">

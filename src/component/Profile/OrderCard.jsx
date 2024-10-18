@@ -17,7 +17,8 @@ export const OrderCard = ({item,order}) =>{
                         {item.food.name} 
                         </p>
                         <p>
-                            Rs.{item.totalPrice}
+                        Rs.{parseFloat(item.totalPrice).toFixed(2)}
+                            
                         </p>
                     </div>
 

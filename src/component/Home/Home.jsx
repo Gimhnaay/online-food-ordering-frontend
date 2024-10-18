@@ -8,7 +8,6 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { findCart } from "../Sate/Cart/Action";
 
 
-const restaurants=[1,1,1,1,1,1,1,1,1]
 
 const Home = () => {
     const dispatch=useDispatch()

@@ -118,7 +118,7 @@ export const getRestaurantByUserId=(jwt)=>{
         dispatch({type:GET_RESTAURANT_BY_USER_ID_REQUEST});
 
         try{
-            const {data}= await api.get('/api/admin/restaurant/user',{
+            const {data}= await api.get(`/api/admin/restaurant/user`,{
                 headers:{
                     Authorization:`Bearer ${jwt}`,
                 },
@@ -239,6 +239,8 @@ export const createEventAction = ({data, jwt, restaurantId})=> {
 
 };
 
+
+
 export const getAllEvents = ({jwt})=> {
     return async (dispatch) => {
         dispatch({type:GET_ALL_EVENTS_REQUEST});
@@ -256,6 +258,8 @@ export const getAllEvents = ({jwt})=> {
         }
     };
 };
+
+
 
 export const deleteEventAction = ({eventId, jwt}) => {
     return async (dispatch) => {
@@ -297,6 +301,7 @@ export const getRestaurantsEvents = ({restaurantId, jwt}) => {
         }
     };
 };
+
 
 export const createCategoryAction = ({reqData,jwt})=>{
     return async (dispatch)=>{
